@@ -134,7 +134,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void restart() {
         if(!characterSprite.isAlive()){
-          
+
             allNew();
         }
     }

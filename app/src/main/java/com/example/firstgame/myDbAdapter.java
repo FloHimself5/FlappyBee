@@ -43,7 +43,7 @@ public class myDbAdapter {
             String name =cursor.getString(cursor.getColumnIndex(myDbHelper.NAME));
             String date =cursor.getString(cursor.getColumnIndex(myDbHelper.DATE));
             String score =cursor.getString(cursor.getColumnIndex(myDbHelper.SCORE));
-            buffer.append(cid+ "   " + name + "   " + date + "   " + score +" \n");
+            buffer.append(name + "   " + date + "   " + score +" \n");
         }
         return buffer.toString();
     }
