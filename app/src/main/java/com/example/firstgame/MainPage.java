@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainPage extends AppCompatActivity implements View.OnClickListener {
 
-    Button buttonGame, buttonHelp;
+    Button buttonGame, buttonHelp, buttonScore;
 
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -48,6 +48,8 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
         buttonGame.setOnClickListener(this);
         buttonHelp = (Button) findViewById(R.id.button_help);
         buttonHelp.setOnClickListener(this);
+        buttonScore = (Button) findViewById(R.id.button_score);
+        buttonScore.setOnClickListener(this);
     }
 
     @Override
@@ -58,9 +60,11 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
             case R.id.button_game:
                 startActivity(new Intent(this, MainActivity.class));
                 break;
-
             case R.id.button_help:
                 startActivity(new Intent(this, Help.class));
+                break;
+            case R.id.button_score:
+                startActivity(new Intent(this, Score.class));
                 break;
             default:
                 break;
