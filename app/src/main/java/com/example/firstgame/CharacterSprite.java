@@ -1,11 +1,12 @@
 package com.example.firstgame;
 
+import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 
-public class CharacterSprite {
+public class CharacterSprite extends Activity  {
     private Bitmap image;
     private int y = 0;
     private int x = 50;
@@ -19,11 +20,13 @@ public class CharacterSprite {
     private boolean alive = true;
     private int score = 0;
 
+
     public CharacterSprite(Bitmap bmp) {
         image = bmp;
         y = 50;
         vel = 0;
         acc = 0;
+
     }
 
     public void draw(Canvas canvas) {
@@ -92,4 +95,5 @@ public class CharacterSprite {
     public boolean isAlive(){
         return alive;
     }
+
 }

@@ -9,6 +9,10 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 class GameView extends SurfaceView implements SurfaceHolder.Callback {
@@ -24,7 +28,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private int distance = screenWidth/3;
 
-    private int grav = 1;
+
 
     private boolean gameOver = false;
 
@@ -33,6 +37,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         getHolder().addCallback(this);
         thread = new GameThread(getHolder(), this);
         setFocusable(true);
+
     }
 
     @Override
@@ -67,10 +72,6 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         if (canvas != null) {
             canvas.drawColor(Color.WHITE);
             Paint paint = new Paint();
-
-
-
-
 
             if(wall1.check()){
                 if((screenWidth - wall2.getRight())> distance) {
@@ -113,10 +114,13 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
                 paint.setColor(Color.rgb(255,0,0));
                 canvas.drawText("GAME OVER", screenWidth/2 - 200, screenHeight/2, paint);
 
-
             }
          }
     }
+
+
+
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -130,6 +134,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void restart() {
         if(!characterSprite.isAlive()){
+          
             allNew();
         }
     }

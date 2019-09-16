@@ -24,6 +24,13 @@ public class myDbAdapter {
         return id;
     }
 
+    public  void delete()
+    {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        db.delete(myDbHelper.TABLE_NAME,null,null);
+
+    }
+
     public String getData()
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();

@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class Score extends Activity implements View.OnClickListener{
 
-    Button buttonAdd, buttonShow;
+    Button buttonAdd, buttonShow, buttonDelete;
     myDbAdapter helper;
 
     @Override
@@ -22,9 +22,11 @@ public class Score extends Activity implements View.OnClickListener{
         buttonAdd.setOnClickListener(this);
         buttonShow = (Button) findViewById(R.id.button_show);
         buttonShow.setOnClickListener(this);
+        buttonDelete = (Button) findViewById(R.id.button_delete);
+        buttonDelete.setOnClickListener(this);
     }
 
-    public void addUser(View view)
+    public void addEntry()
     {
         Date datum = new Date();
         Date time = datum;
@@ -39,13 +41,18 @@ public class Score extends Activity implements View.OnClickListener{
         String date = stringHour + ":" + stringMinute + " - " + stringDatum;
         String score = "1";
         long id = helper.insertData(name,date,score);
+    }
 
+    public void delete( View view)
+    {
+        helper.delete();
+        Message.message(this, "Deleted all Data");
     }
 
     public void viewdata(View view)
     {
         String data = helper.getData();
-        Message.message(this,data);
+        Message.message(this, data);
     }
 
     @Override
@@ -53,11 +60,14 @@ public class Score extends Activity implements View.OnClickListener{
         switch (v.getId()) {
 
             case R.id.button_add:
-                addUser(v);
+                addEntry();
                // Message.message(getApplicationContext(),"Enter Both Name and Password");
                 break;
             case R.id.button_show:
                 viewdata(v);
+                break;
+            case R.id.button_delete:
+               delete(v);
                 break;
 
             default:
