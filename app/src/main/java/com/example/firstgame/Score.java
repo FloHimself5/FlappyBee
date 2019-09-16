@@ -1,17 +1,16 @@
 package com.example.firstgame;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Score extends Activity implements View.OnClickListener{
 
     Button buttonAdd, buttonShow;
-    EditText Name, Date , Score;
     myDbAdapter helper;
 
     @Override
@@ -27,10 +26,19 @@ public class Score extends Activity implements View.OnClickListener{
 
     public void addUser(View view)
     {
-        String t1 = "hnrfuhesfhbj";
-        String t2 = "515151";
-        String t3 = "LOL";
-        long id = helper.insertData(t1,t2,t3);
+        Date datum = new Date();
+        Date time = datum;
+        SimpleDateFormat formatDay = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatHour = new SimpleDateFormat("HH");
+        SimpleDateFormat formatMinute = new SimpleDateFormat("mm");
+
+        String stringDatum = formatDay.format(datum);
+        String stringHour = formatHour.format(time);
+        String stringMinute = formatMinute.format(time);
+        String name = "Bob";
+        String date = stringHour + ":" + stringMinute + " - " + stringDatum;
+        String score = "1";
+        long id = helper.insertData(name,date,score);
 
     }
 
