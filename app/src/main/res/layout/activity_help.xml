@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:layout_centerHorizontal="true">
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Do you need Help?"
+        android:textColor="#86AD33"
+        android:textSize="50dp"
+        android:textStyle="bold" />
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HELP" />
+        android:layout_marginBottom="10dp"
+        android:text="Probably you're just too bad and there is nothing I can do about that"
+        android:gravity="left"
+        android:textSize="20dp"
+         />
+
 </LinearLayout>
