@@ -6,10 +6,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainPage extends AppCompatActivity {
+public class MainPage extends AppCompatActivity implements View.OnClickListener {
+
+    Button buttonGame, buttonHelp;
 
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -39,6 +43,28 @@ public class MainPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        buttonGame = (Button) findViewById(R.id.button_game);
+        buttonGame.setOnClickListener(this);
+        buttonHelp = (Button) findViewById(R.id.button_help);
+        buttonHelp.setOnClickListener(this);
     }
 
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+
+            case R.id.button_game:
+                startActivity(new Intent(this, MainActivity.class));
+                break;
+
+            case R.id.button_help:
+                startActivity(new Intent(this, Help.class));
+                break;
+            default:
+                break;
+        }
+
+    }
 }
