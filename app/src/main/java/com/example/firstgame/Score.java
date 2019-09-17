@@ -32,6 +32,7 @@ public class Score extends Activity implements View.OnClickListener{
             addEntry(getIntent().getIntExtra("score", -1));
         }
         refresh();
+       System.out.println(helper.getNameById(30) + " " + helper.getScoreById(30) + " " + helper.getDateById(30));
     }
 
 

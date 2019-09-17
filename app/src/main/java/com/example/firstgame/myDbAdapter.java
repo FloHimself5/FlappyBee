@@ -60,6 +60,54 @@ public class myDbAdapter {
         return buffer.toString();
     }
 
+    public String getScoreById(long id)
+    {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        Cursor cursor = db.query(myDbHelper.TABLE_NAME, new String[] { myDbHelper.UID,
+                        myDbHelper.SCORE}, myDbHelper.UID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        StringBuffer buffer= new StringBuffer();
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+            String score =cursor.getString(cursor.getColumnIndex(myDbHelper.SCORE));
+            buffer.append(score);
+
+        return buffer.toString();
+    }
+
+    public String getDateById(long id)
+    {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        Cursor cursor = db.query(myDbHelper.TABLE_NAME, new String[] { myDbHelper.UID,
+                        myDbHelper.DATE}, myDbHelper.UID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        StringBuffer buffer= new StringBuffer();
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        String date =cursor.getString(cursor.getColumnIndex(myDbHelper.DATE));
+        buffer.append(date);
+
+        return buffer.toString();
+    }
+
+    public String getNameById(long id)
+    {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        Cursor cursor = db.query(myDbHelper.TABLE_NAME, new String[] { myDbHelper.UID,
+                        myDbHelper.NAME}, myDbHelper.UID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        StringBuffer buffer= new StringBuffer();
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        String name =cursor.getString(cursor.getColumnIndex(myDbHelper.NAME));
+        buffer.append(name);
+
+        return buffer.toString();
+    }
+
     public String getDate()
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
@@ -87,7 +135,7 @@ public class myDbAdapter {
             String name =cursor.getString(cursor.getColumnIndex(myDbHelper.NAME));
             String date =cursor.getString(cursor.getColumnIndex(myDbHelper.DATE));
             String score =cursor.getString(cursor.getColumnIndex(myDbHelper.SCORE));
-            buffer.append(name + "   " + date + "   " + score +" \n");
+            buffer.append(cid + " " + name + "   " + date + "   " + score +" \n");
         }
         return buffer.toString();
     }
