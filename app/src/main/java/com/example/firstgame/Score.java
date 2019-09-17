@@ -1,5 +1,4 @@
 package com.example.firstgame;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +12,7 @@ public class Score extends Activity implements View.OnClickListener{
     Button buttonAdd, buttonShow, buttonDelete;
     myDbAdapter helper;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +24,12 @@ public class Score extends Activity implements View.OnClickListener{
         buttonShow.setOnClickListener(this);
         buttonDelete = (Button) findViewById(R.id.button_delete);
         buttonDelete.setOnClickListener(this);
+        //int score;
+        addEntry(getIntent().getIntExtra("score", 0));
     }
 
-    public void addEntry()
+
+    public void addEntry(int score)
     {
         Date datum = new Date();
         Date time = datum;
@@ -39,8 +42,8 @@ public class Score extends Activity implements View.OnClickListener{
         String stringMinute = formatMinute.format(time);
         String name = "Bob";
         String date = stringHour + ":" + stringMinute + " - " + stringDatum;
-        String score = "1";
-        long id = helper.insertData(name,date,score);
+        String scoreSring = Integer.toString(score);
+        long id = helper.insertData(name,date,scoreSring);
     }
 
     public void delete( View view)
@@ -60,7 +63,7 @@ public class Score extends Activity implements View.OnClickListener{
         switch (v.getId()) {
 
             case R.id.button_add:
-                addEntry();
+                addEntry(5);
                // Message.message(getApplicationContext(),"Enter Both Name and Password");
                 break;
             case R.id.button_show:

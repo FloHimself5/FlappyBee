@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainPage extends AppCompatActivity implements View.OnClickListener {
 
     Button buttonGame, buttonHelp, buttonScore;
+    myDbAdapter helper;
 
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -44,6 +45,8 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        helper = new myDbAdapter(this);
+
         buttonGame = (Button) findViewById(R.id.button_game);
         buttonGame.setOnClickListener(this);
         buttonHelp = (Button) findViewById(R.id.button_help);
@@ -58,7 +61,8 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()) {
 
             case R.id.button_game:
-                startActivity(new Intent(this, MainActivity.class));
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
                 break;
             case R.id.button_help:
                 startActivity(new Intent(this, Help.class));

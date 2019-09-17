@@ -1,6 +1,8 @@
 package com.example.firstgame;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -28,14 +30,17 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private int distance = screenWidth/3;
 
+    private Context myContext;
 
+    private boolean wentToScore = false;
+    private MainActivity mainActivity;
 
-    private boolean gameOver = false;
-
-    public GameView(Context context) {
+    public GameView(Context context, MainActivity mainActivity) {
         super(context);
+        myContext = context;
+        this.mainActivity = mainActivity;
         getHolder().addCallback(this);
-        thread = new GameThread(getHolder(), this);
+
         setFocusable(true);
 
     }
@@ -48,8 +53,10 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         allNew();
+        thread = new GameThread(getHolder(), this);
         thread.setRunning(true);
         thread.start();
+
     }
 
     @Override
@@ -114,12 +121,29 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
                 paint.setColor(Color.rgb(255,0,0));
                 canvas.drawText("GAME OVER", screenWidth/2 - 200, screenHeight/2, paint);
 
+
+
+                if(wentToScore == false) {
+                    thread.setRunning(false);
+                    System.out.println(thread.getState());
+                    mainActivity.goToScore(characterSprite.getScore());
+                    wentToScore = true;
+                }
+
             }
          }
     }
 
 
+    public void goToScore(){
 
+       // Intent intent = new Intent().setClass(getContext(), Score.class);
+      //  intent.putExtra("score", characterSprite.getScore());
+
+      //  myContext.startActivity(intent);
+        //System.out.println("HIER");
+
+    }
 
 
     @Override
@@ -140,7 +164,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void allNew(){
-        gameOver = false;
+        wentToScore = false;
         characterSprite = new CharacterSprite(BitmapFactory.decodeResource(getResources(), R.drawable.bee));
         wall1 = new Wall();
         wall2 = new Wall(screenWidth/2);
