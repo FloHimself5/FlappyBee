@@ -31,6 +31,50 @@ public class myDbAdapter {
 
     }
 
+    public String getName(){
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        String[] columns = {myDbHelper.UID,myDbHelper.NAME,myDbHelper.DATE,myDbHelper.SCORE};
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,null);
+        StringBuffer buffer= new StringBuffer();
+        while (cursor.moveToNext())
+        {
+            int cid =cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
+            String name =cursor.getString(cursor.getColumnIndex(myDbHelper.NAME));
+            buffer.append(name + "\n");
+        }
+        return buffer.toString();
+    }
+
+    public String getScore()
+    {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        String[] columns = {myDbHelper.UID,myDbHelper.NAME,myDbHelper.DATE,myDbHelper.SCORE};
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,null);
+        StringBuffer buffer= new StringBuffer();
+        while (cursor.moveToNext())
+        {
+            int cid =cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
+            String score =cursor.getString(cursor.getColumnIndex(myDbHelper.SCORE));
+            buffer.append(score + "\n");
+        }
+        return buffer.toString();
+    }
+
+    public String getDate()
+    {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        String[] columns = {myDbHelper.UID,myDbHelper.NAME,myDbHelper.DATE,myDbHelper.SCORE};
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,null);
+        StringBuffer buffer= new StringBuffer();
+        while (cursor.moveToNext())
+        {
+            int cid =cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
+            String date =cursor.getString(cursor.getColumnIndex(myDbHelper.DATE));
+            buffer.append(date + "\n");
+        }
+        return buffer.toString();
+    }
+
     public String getData()
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();

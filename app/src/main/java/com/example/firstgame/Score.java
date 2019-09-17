@@ -7,6 +7,9 @@ import android.widget.Button;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.widget.TextView;
+import android.widget.Toast;
+
 public class Score extends Activity implements View.OnClickListener{
 
     Button buttonAdd, buttonShow, buttonDelete;
@@ -25,7 +28,10 @@ public class Score extends Activity implements View.OnClickListener{
         buttonDelete = (Button) findViewById(R.id.button_delete);
         buttonDelete.setOnClickListener(this);
         //int score;
-        addEntry(getIntent().getIntExtra("score", 0));
+        if(getIntent().getIntExtra("score", -1) != -1) {
+            addEntry(getIntent().getIntExtra("score", -1));
+        }
+        refresh();
     }
 
 
@@ -44,18 +50,31 @@ public class Score extends Activity implements View.OnClickListener{
         String date = stringHour + ":" + stringMinute + " - " + stringDatum;
         String scoreSring = Integer.toString(score);
         long id = helper.insertData(name,date,scoreSring);
+        refresh();
     }
 
     public void delete( View view)
     {
         helper.delete();
         Message.message(this, "Deleted all Data");
+        refresh();
+    }
+
+    public void refresh(){
+        TextView tName = (TextView) findViewById(R.id.name);
+        TextView tScore = (TextView) findViewById(R.id.score);
+        TextView tDate = (TextView) findViewById(R.id.date);
+        tName.setText(helper.getName());
+        tScore.setText(helper.getScore());
+        tDate.setText(helper.getDate());
     }
 
     public void viewdata(View view)
     {
         String data = helper.getData();
+        Toast.makeText(getApplicationContext(),data, Toast.LENGTH_SHORT).show();
         Message.message(this, data);
+        refresh();
     }
 
     @Override
