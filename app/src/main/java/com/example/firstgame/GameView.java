@@ -103,7 +103,6 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
             characterSprite.addScore(wall1.getPoint(characterSprite));
             characterSprite.addScore(wall2.getPoint(characterSprite));
-            // System.out.println(characterSprite.getScore());
 
             paint.setColor(Color.rgb(0,0,0));
             paint.setTextSize(50);
@@ -135,16 +134,6 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
 
-    public void goToScore(){
-
-       // Intent intent = new Intent().setClass(getContext(), Score.class);
-      //  intent.putExtra("score", characterSprite.getScore());
-
-      //  myContext.startActivity(intent);
-        //System.out.println("HIER");
-
-    }
-
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -171,6 +160,17 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-    public void update() {
+    public void unpause(){
+        characterSprite.unpause();
+        wall1.unpause();
+        wall2.unpause();
     }
+
+    public void pause() {
+        characterSprite.pause();
+        wall1.pause();
+        wall2.pause();
+    }
+
 }
+

@@ -12,6 +12,8 @@ public class BotPillar {
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
+    private boolean paused = false;
+
     private int width = 200;
     public BotPillar(int top, int left){
       this.left = left;
@@ -34,8 +36,10 @@ public class BotPillar {
     }
 
     public void update() {
-        left -= vel;
-        right -= vel;
+        if(!paused) {
+            left -= vel;
+            right -= vel;
+        }
     }
 
     public boolean check() {
@@ -57,5 +61,13 @@ public class BotPillar {
             }
         }
         return false;
+    }
+
+    public void pause() {
+        paused = true;
+    }
+
+    public void unpause() {
+        paused = false;
     }
 }

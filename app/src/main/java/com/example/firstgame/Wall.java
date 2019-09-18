@@ -12,6 +12,7 @@ public class Wall {
 
 
 
+
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
@@ -70,5 +71,15 @@ public class Wall {
 
     public void end() {
         end = true;
+    }
+
+    public void pause() {
+        topP.pause();
+        botP.pause();
+    }
+
+    public void unpause() {
+        topP.unpause();
+        botP.unpause();
     }
 }

@@ -13,6 +13,7 @@ public class TopPillar {
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
     private boolean gotPoint = false;
+    private boolean paused = false;
 
     private int width = 200;
     public TopPillar(int bot, int left){
@@ -47,8 +48,10 @@ public class TopPillar {
     }
 
     public void update() {
-        left -= vel;
-        right -= vel;
+        if(!paused) {
+            left -= vel;
+            right -= vel;
+        }
     }
 
     public boolean check() {
@@ -75,5 +78,13 @@ public class TopPillar {
             }
         }
         return false;
+    }
+
+    public void pause() {
+        paused = true;
+    }
+
+    public void unpause() {
+        paused = false;
     }
 }

@@ -20,6 +20,8 @@ public class CharacterSprite extends Activity  {
     private boolean alive = true;
     private int score = 0;
 
+    private boolean paused = false;
+
 
     public CharacterSprite(Bitmap bmp) {
         image = bmp;
@@ -34,16 +36,18 @@ public class CharacterSprite extends Activity  {
     }
 
     public void update() {
-        vel += grav;
-        y += vel;
+        if(!paused) {
+            vel += grav;
+            y += vel;
 
-        if (y > screenHeight + image.getHeight()) {
-            y = screenHeight;
-            vel = 0;
-        }
-        if(y < 0){
-            y = 0;
-            vel = 0;
+            if (y > screenHeight + image.getHeight()) {
+                y = screenHeight;
+                vel = 0;
+            }
+            if (y < 0) {
+                y = 0;
+                vel = 0;
+            }
         }
     }
 
@@ -96,4 +100,11 @@ public class CharacterSprite extends Activity  {
         return alive;
     }
 
+    public void pause() {
+        paused = true;
+    }
+
+    public void unpause() {
+        paused = false;
+    }
 }
