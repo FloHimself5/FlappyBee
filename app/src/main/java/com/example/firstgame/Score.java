@@ -34,6 +34,9 @@ public class Score extends Activity implements View.OnClickListener{
         score =   getIntent().getIntExtra("score", -1);
         System.out.println("highscoreID: " + highscoreID);
         helper.insertFirst();
+        System.out.println("HIGH: " + helper.getHighscore());
+        highscore = helper.getHighscore();
+        highscoreID = helper.getHighscoreId();
         if(score != -1) {
             if (highscore < score) {
                 System.out.println("------------------------------------");

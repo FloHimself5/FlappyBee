@@ -57,6 +57,24 @@ public class myDbAdapter {
         return buffer.toString();
     }
 
+    public int getHighscore()
+    {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        String[] columns = {myDbHelper.UID,myDbHelper.NAME,myDbHelper.DATE,myDbHelper.SCORE};
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,null);
+        StringBuffer buffer= new StringBuffer();
+        int highscore = 0;
+        while (cursor.moveToNext())
+        {
+            int cid =cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
+            String score =cursor.getString(cursor.getColumnIndex(myDbHelper.SCORE));
+            if(Integer.parseInt(score) > highscore) {
+               highscore = Integer.parseInt(score);
+            }
+        }
+        return highscore;
+    }
+
     public String getScore()
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
@@ -150,6 +168,27 @@ public class myDbAdapter {
             buffer.append(cid + " " + name + "   " + date + "   " + score +" \n");
         }
         return buffer.toString();
+    }
+
+    public long getHighscoreId() {
+
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        String[] columns = {myDbHelper.UID,myDbHelper.NAME,myDbHelper.DATE,myDbHelper.SCORE};
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,null);
+        StringBuffer buffer= new StringBuffer();
+        int highscore = 0;
+        long highscoreId = 0;
+        while (cursor.moveToNext())
+        {
+            int cid =cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
+            String score =cursor.getString(cursor.getColumnIndex(myDbHelper.SCORE));
+            if(Integer.parseInt(score) > highscore) {
+                highscore = Integer.parseInt(score);
+                highscoreId = cid;
+            }
+        }
+        return highscoreId;
+
     }
 
     static class myDbHelper extends SQLiteOpenHelper {
