@@ -15,6 +15,8 @@ public class TopPillar {
     private boolean gotPoint = false;
     private boolean paused = false;
 
+    private int speedup = 1;
+
     private int width = 200;
     public TopPillar(int bot, int left){
         this.left = left;
@@ -49,8 +51,8 @@ public class TopPillar {
 
     public void update() {
         if(!paused) {
-            left -= vel;
-            right -= vel;
+            left -= vel * speedup;
+            right -= vel * speedup;
         }
     }
 
@@ -86,5 +88,9 @@ public class TopPillar {
 
     public void unpause() {
         paused = false;
+    }
+
+    public void speedup(int speedup) {
+        this.speedup = speedup;
     }
 }

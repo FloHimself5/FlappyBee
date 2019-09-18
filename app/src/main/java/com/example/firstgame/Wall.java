@@ -82,4 +82,9 @@ public class Wall {
         topP.unpause();
         botP.unpause();
     }
+
+    public void speedup(int speedup) {
+        topP.speedup(speedup);
+        botP.speedup(speedup);
+    }
 }

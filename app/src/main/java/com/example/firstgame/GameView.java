@@ -31,6 +31,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private int distance = screenWidth/3;
 
     private Context myContext;
+    private int speedup = 1;
 
     private boolean wentToScore = false;
     private MainActivity mainActivity;
@@ -98,18 +99,23 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
             wall1.update();
             wall2.update();
 
-            wall1.draw(canvas,paint);
-            wall2.draw(canvas,paint);
+
 
             characterSprite.addScore(wall1.getPoint(characterSprite));
             characterSprite.addScore(wall2.getPoint(characterSprite));
 
-            paint.setColor(Color.rgb(0,0,0));
-            paint.setTextSize(50);
-            canvas.drawText("Score:  " + characterSprite.getScore(), 10, screenHeight - 60, paint);
+
+            if(characterSprite.getScore() != 0 && characterSprite.getScore() % 10 == 0){
+                speedup = characterSprite.getScore() / 10;
+                wall1.speedup(speedup);
+                wall2.speedup(speedup);
+            }
 
             characterSprite.update();
             characterSprite.draw(canvas);
+
+            wall1.draw(canvas,paint);
+            wall2.draw(canvas,paint);
 
             if(wall1.hit(characterSprite) || wall2.hit(characterSprite) || characterSprite.fell()){
                 characterSprite.kill();
@@ -130,6 +136,10 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
                 }
 
             }
+
+            paint.setColor(Color.rgb(0,0,0));
+            paint.setTextSize(50);
+            canvas.drawText("Score:  " + characterSprite.getScore(), 10, screenHeight - 60, paint);
          }
     }
 

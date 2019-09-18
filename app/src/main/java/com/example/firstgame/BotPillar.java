@@ -15,6 +15,8 @@ public class BotPillar {
     private boolean paused = false;
 
     private int width = 200;
+    private int speedup = 1;
+
     public BotPillar(int top, int left){
       this.left = left;
       this.top = top;
@@ -37,8 +39,8 @@ public class BotPillar {
 
     public void update() {
         if(!paused) {
-            left -= vel;
-            right -= vel;
+            left -= vel * speedup;
+            right -= vel * speedup;
         }
     }
 
@@ -69,5 +71,9 @@ public class BotPillar {
 
     public void unpause() {
         paused = false;
+    }
+
+    public void speedup(int speedup) {
+        this.speedup = speedup;
     }
 }

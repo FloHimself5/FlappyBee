@@ -53,7 +53,7 @@ public class Score extends Activity implements View.OnClickListener{
                 System.out.println("NEW HIGHSCORE: " + highscoreID + " " + helper.getNameById(highscoreID) + " " + helper.getScoreById(highscoreID) + " " + helper.getDateById(highscoreID));
             }
         }
-        viewdata();
+       // viewdata();
         refresh();
     }
 
