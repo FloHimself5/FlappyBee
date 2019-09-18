@@ -24,6 +24,18 @@ public class myDbAdapter {
         return id;
     }
 
+
+    public void insertFirst()
+    {
+        SQLiteDatabase dbb = myhelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(myDbHelper.UID, 0);
+        contentValues.put(myDbHelper.NAME, "First");
+        contentValues.put(myDbHelper.DATE, "1.1.1");
+        contentValues.put(myDbHelper.SCORE, "0");
+        long id = dbb.insert(myDbHelper.TABLE_NAME, null , contentValues);
+    }
+
     public  void delete()
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();

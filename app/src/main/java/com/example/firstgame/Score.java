@@ -15,6 +15,10 @@ public class Score extends Activity implements View.OnClickListener{
     Button buttonAdd, buttonShow, buttonDelete;
     myDbAdapter helper;
 
+    int score;
+    long highscoreID;
+    int highscore;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,16 +31,22 @@ public class Score extends Activity implements View.OnClickListener{
         buttonShow.setOnClickListener(this);
         buttonDelete = (Button) findViewById(R.id.button_delete);
         buttonDelete.setOnClickListener(this);
-        //int score;
-        if(getIntent().getIntExtra("score", -1) != -1) {
-            addEntry(getIntent().getIntExtra("score", -1));
+        score =   getIntent().getIntExtra("score", -1);
+        System.out.println("highscoreID: " + highscoreID);
+        helper.insertFirst();
+        if(score != -1) {
+            if (highscore < score) {
+                System.out.println("------------------------------------");
+                highscoreID = addEntry(score);
+                highscore = score;
+                System.out.println("NEW HIGHSCORE: " + highscoreID + " " + helper.getNameById(highscoreID) + " " + helper.getScoreById(highscoreID) + " " + helper.getDateById(highscoreID));
+            }
         }
         refresh();
-       System.out.println(helper.getNameById(30) + " " + helper.getScoreById(30) + " " + helper.getDateById(30));
     }
 
 
-    public void addEntry(int score)
+    public long addEntry(int score)
     {
         Date datum = new Date();
         Date time = datum;
@@ -52,6 +62,7 @@ public class Score extends Activity implements View.OnClickListener{
         String scoreSring = Integer.toString(score);
         long id = helper.insertData(name,date,scoreSring);
         refresh();
+        return id;
     }
 
     public void delete( View view)

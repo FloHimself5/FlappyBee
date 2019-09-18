@@ -22,6 +22,5 @@ public class MainActivity extends Activity {
         Intent intent = new Intent().setClass(this, Score.class);
         intent.putExtra("score", score);
         startActivity(intent);
-
     }
 }
