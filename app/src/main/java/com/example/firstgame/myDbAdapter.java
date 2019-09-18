@@ -48,12 +48,14 @@ public class myDbAdapter {
         String[] columns = {myDbHelper.UID,myDbHelper.NAME,myDbHelper.DATE,myDbHelper.SCORE};
         Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,myDbHelper.NAME+" ASC");
         StringBuffer buffer= new StringBuffer();
-        while (cursor.moveToNext())
+        int count = 0;
+        while (cursor.moveToNext() && count < 10)
         {
             int cid =cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
             if(cid != 0) {
                 String name = cursor.getString(cursor.getColumnIndex(myDbHelper.NAME));
-                buffer.append(name + "\n");
+                buffer.append(count + 1 + ": " + name + "\n");
+                count++;
             }
         }
         return buffer.toString();
@@ -83,12 +85,14 @@ public class myDbAdapter {
         String[] columns = {myDbHelper.UID,myDbHelper.NAME,myDbHelper.DATE,myDbHelper.SCORE};
         Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,myDbHelper.SCORE+" ASC");
         StringBuffer buffer= new StringBuffer();
-        while (cursor.moveToNext())
+        int count = 0;
+        while (cursor.moveToNext() && count < 10)
         {
             int cid = cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
             if(cid != 0) {
                 String score = cursor.getString(cursor.getColumnIndex(myDbHelper.SCORE));
-                buffer.append(score + "\n");
+                buffer.append("Score: " + score + "\n");
+                count++;
             }
         }
         return buffer.toString();
@@ -148,12 +152,14 @@ public class myDbAdapter {
         String[] columns = {myDbHelper.UID,myDbHelper.NAME,myDbHelper.DATE,myDbHelper.SCORE};
         Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,myDbHelper.DATE+" ASC");
         StringBuffer buffer= new StringBuffer();
-        while (cursor.moveToNext())
+        int count = 0;
+        while (cursor.moveToNext() && count < 10)
         {
             int cid =cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
             if(cid != 0) {
                 String date = cursor.getString(cursor.getColumnIndex(myDbHelper.DATE));
                 buffer.append(date + "\n");
+                count++;
             }
         }
         return buffer.toString();
