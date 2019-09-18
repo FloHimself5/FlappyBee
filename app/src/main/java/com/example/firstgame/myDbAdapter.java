@@ -51,8 +51,10 @@ public class myDbAdapter {
         while (cursor.moveToNext())
         {
             int cid =cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
-            String name =cursor.getString(cursor.getColumnIndex(myDbHelper.NAME));
-            buffer.append(name + "\n");
+            if(cid != 0) {
+                String name = cursor.getString(cursor.getColumnIndex(myDbHelper.NAME));
+                buffer.append(name + "\n");
+            }
         }
         return buffer.toString();
     }
@@ -83,9 +85,11 @@ public class myDbAdapter {
         StringBuffer buffer= new StringBuffer();
         while (cursor.moveToNext())
         {
-            int cid =cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
-            String score =cursor.getString(cursor.getColumnIndex(myDbHelper.SCORE));
-            buffer.append(score + "\n");
+            int cid = cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
+            if(cid != 0) {
+                String score = cursor.getString(cursor.getColumnIndex(myDbHelper.SCORE));
+                buffer.append(score + "\n");
+            }
         }
         return buffer.toString();
     }
@@ -147,8 +151,10 @@ public class myDbAdapter {
         while (cursor.moveToNext())
         {
             int cid =cursor.getInt(cursor.getColumnIndex(myDbHelper.UID));
-            String date =cursor.getString(cursor.getColumnIndex(myDbHelper.DATE));
-            buffer.append(date + "\n");
+            if(cid != 0) {
+                String date = cursor.getString(cursor.getColumnIndex(myDbHelper.DATE));
+                buffer.append(date + "\n");
+            }
         }
         return buffer.toString();
     }
