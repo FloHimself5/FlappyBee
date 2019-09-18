@@ -46,7 +46,7 @@ public class myDbAdapter {
     public String getName(){
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] columns = {myDbHelper.UID,myDbHelper.NAME,myDbHelper.DATE,myDbHelper.SCORE};
-        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,myDbHelper.NAME+" ASC");
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,myDbHelper.UID+" DESC");
         StringBuffer buffer= new StringBuffer();
         int count = 0;
         while (cursor.moveToNext() && count < 10)
@@ -83,7 +83,7 @@ public class myDbAdapter {
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] columns = {myDbHelper.UID,myDbHelper.NAME,myDbHelper.DATE,myDbHelper.SCORE};
-        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,myDbHelper.SCORE+" ASC");
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,myDbHelper.UID+" DESC");
         StringBuffer buffer= new StringBuffer();
         int count = 0;
         while (cursor.moveToNext() && count < 10)
@@ -150,7 +150,7 @@ public class myDbAdapter {
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] columns = {myDbHelper.UID,myDbHelper.NAME,myDbHelper.DATE,myDbHelper.SCORE};
-        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,myDbHelper.DATE+" ASC");
+        Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,myDbHelper.UID+" DESC");
         StringBuffer buffer= new StringBuffer();
         int count = 0;
         while (cursor.moveToNext() && count < 10)
