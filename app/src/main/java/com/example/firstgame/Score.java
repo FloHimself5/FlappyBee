@@ -1,5 +1,6 @@
 package com.example.firstgame;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +13,7 @@ import android.widget.Toast;
 
 public class Score extends Activity implements View.OnClickListener{
 
-    Button buttonAdd, buttonShow, buttonDelete;
+    Button buttonAdd, buttonShow, buttonDelete, buttonMain, buttonGame;
     myDbAdapter helper;
 
     int score;
@@ -25,6 +26,11 @@ public class Score extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
         helper = new myDbAdapter(this);
+
+        buttonMain = (Button) findViewById(R.id.button_To_Main);
+        buttonMain.setOnClickListener(this);
+        buttonGame = (Button) findViewById(R.id.button_To_Game);
+        buttonGame.setOnClickListener(this);
 /*
         buttonAdd = (Button) findViewById(R.id.button_add);
         buttonAdd.setOnClickListener(this);
@@ -98,6 +104,15 @@ public class Score extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
+            case R.id.button_To_Main:
+                startActivity(new Intent(this, MainPage.class));
+                // Message.message(getApplicationContext(),"Enter Both Name and Password");
+                break;
+            case R.id.button_To_Game:
+                startActivity(new Intent(this, MainActivity.class));
+                // Message.message(getApplicationContext(),"Enter Both Name and Password");
+                break;
 
 /*
             case R.id.button_add:
