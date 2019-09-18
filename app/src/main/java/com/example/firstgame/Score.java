@@ -25,14 +25,14 @@ public class Score extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
         helper = new myDbAdapter(this);
-
+/*
         buttonAdd = (Button) findViewById(R.id.button_add);
         buttonAdd.setOnClickListener(this);
         buttonShow = (Button) findViewById(R.id.button_show);
         buttonShow.setOnClickListener(this);
         buttonDelete = (Button) findViewById(R.id.button_delete);
         buttonDelete.setOnClickListener(this);
-
+*/
         score =   getIntent().getIntExtra("score", -1);
         System.out.println("highscoreID: " + highscoreID);
         helper.insertFirst();
@@ -99,7 +99,7 @@ public class Score extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
 
-
+/*
             case R.id.button_add:
                 addEntry(helper.getHighscore()+1);
                // Message.message(getApplicationContext(),"Enter Both Name and Password");
@@ -110,7 +110,7 @@ public class Score extends Activity implements View.OnClickListener{
             case R.id.button_delete:
                delete();
                 break;
-
+*/
             default:
                 break;
         }
