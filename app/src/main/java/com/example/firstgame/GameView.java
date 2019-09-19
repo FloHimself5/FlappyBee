@@ -41,12 +41,17 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private Bitmap bgImage;
     private Bitmap smImage;
 
+    private Bitmap bgImage2;
+    private Bitmap smImage2;
+
     private Bitmap bgImageBrick;
     private Bitmap smImageBrick;
 
     private int widthWalls = 250;
 
     private MediaPlayer mp;
+    private int counter  = 0;
+    private int background = 0;
 
     public GameView(Context context, MainActivity mainActivity) {
         super(context);
@@ -56,6 +61,9 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         setFocusable(true);
         bgImage = BitmapFactory.decodeResource(getResources(), R.drawable.background_new);
         smImage = Bitmap.createScaledBitmap(bgImage,screenWidth,screenHeight,true);
+
+        bgImage2 = BitmapFactory.decodeResource(getResources(), R.drawable.background_new_2);
+        smImage2 = Bitmap.createScaledBitmap(bgImage2,screenWidth,screenHeight,true);
 
         bgImageBrick = BitmapFactory.decodeResource(getResources(), R.drawable.bricks_new);
         smImageBrick = Bitmap.createScaledBitmap(bgImageBrick,widthWalls,screenHeight,true);
@@ -114,7 +122,28 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
 
         if (canvas != null) {
-            canvas.drawBitmap(smImage,0, 0, null);
+
+
+
+            if(counter > 30 ){
+                counter = 0;
+                if(background == 0){
+                    background = 1;
+                } else if(background == 1){
+                    background = 0;
+                }
+
+            }
+
+            if(background == 0){
+                canvas.drawBitmap(smImage,0, 0, null);
+            }
+            if(background == 1){
+                canvas.drawBitmap(smImage2,0, 0, null);
+            }
+
+            counter++;
+
             Paint paint = new Paint();
 
             if(wall1.check()){
@@ -177,7 +206,9 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
             paint.setColor(Color.rgb(0,0,0));
             paint.setTextSize(50);
             canvas.drawText("Score:  " + characterSprite.getScore(), 10, screenHeight - 60, paint);
+
          }
+
     }
 
 
