@@ -56,6 +56,7 @@ public class Score extends Activity implements View.OnClickListener{
             }
         }
        // viewdata();
+       // delete();
         refresh();
     }
 

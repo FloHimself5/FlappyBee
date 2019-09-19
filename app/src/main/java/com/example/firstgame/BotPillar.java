@@ -19,33 +19,31 @@ public class BotPillar {
     private int width = 250;
     private int speedup = 1;
 
-    private Bitmap bgImage;
-    private Bitmap smImage;
+
+    private Bitmap smImageBrick;
     private  Resources resources;
 
-    public BotPillar(int top, int left, Resources resources){
+    public BotPillar(int top, int left, Resources resources, Bitmap smImageBrick){
       this.left = left;
       this.top = top;
       right = left + width;
       bot = screenHeight;
 
       this.resources = resources;
-      bgImage = BitmapFactory.decodeResource(resources, R.drawable.wall_final);
-      smImage = Bitmap.createScaledBitmap(bgImage,width,screenHeight,true);
+      this.smImageBrick = smImageBrick;
     }
 
-    public BotPillar(int top, Resources resources){
+    public BotPillar(int top, Resources resources, Bitmap smImageBrick){
         left = screenWidth;
         this.top = top;
         right = left + width;
         bot = screenHeight;
         this.resources = resources;
-        bgImage = BitmapFactory.decodeResource(resources, R.drawable.wall_final);
-        smImage = Bitmap.createScaledBitmap(bgImage,width,screenHeight,true);
+        this.smImageBrick = smImageBrick;
     }
 
     public void draw(Canvas canvas, Paint paint) {
-        canvas.drawBitmap(smImage,left, (int)top, paint);
+        canvas.drawBitmap(smImageBrick,left, (int)top, paint);
     }
 
     public void update() {

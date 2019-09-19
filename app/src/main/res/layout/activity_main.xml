@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/background_new">
 
 
     <ImageButton
@@ -19,7 +19,7 @@
         android:layout_marginRight="70dp"
         android:layout_marginBottom="300dp"
         android:background="@null"
-        android:src="@drawable/button_play"
+        android:src="@drawable/button_play_new"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_score"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         android:layout_marginRight="95dp"
         android:layout_marginBottom="300dp"
         android:background="@null"
-        android:src="@drawable/button_score"
+        android:src="@drawable/button_score_new"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_game"
@@ -54,7 +54,7 @@
         android:layout_marginEnd="182dp"
         android:layout_marginRight="182dp"
         android:layout_marginBottom="523dp"
-        android:src="@drawable/image_title"
+        android:src="@drawable/title_big"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

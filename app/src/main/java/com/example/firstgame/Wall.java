@@ -1,6 +1,7 @@
 package com.example.firstgame;
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -16,22 +17,25 @@ public class Wall {
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
+    private Bitmap smImageBrick;
     private Resources resources;
 
-    public Wall(Resources resources){
+    public Wall(Resources resources, Bitmap smImageBrick){
         this.resources = resources;
         gap = (int)((Math.random() * 800) + 500);
         int rand = (int)((Math.random() * screenHeight/3) + screenHeight/6 );
-        topP = new TopPillar(rand, resources);
-        botP = new BotPillar(rand + gap, resources);
+        this.smImageBrick = smImageBrick;
+        topP = new TopPillar(rand, resources, smImageBrick);
+        botP = new BotPillar(rand + gap, resources, smImageBrick);
     }
 
-    public Wall(Resources resources, int left){
+    public Wall(Resources resources, int left, Bitmap smImageBrick){
         this.resources = resources;
         gap = (int)((Math.random() * 600) + 300);
         int rand = (int)((Math.random() * screenHeight/3) + screenHeight/6 );
-        topP = new TopPillar(rand, screenWidth + left, resources);
-        botP = new BotPillar(rand + gap, screenWidth + left, resources);
+        this.smImageBrick = smImageBrick;
+        topP = new TopPillar(rand, screenWidth + left, resources, smImageBrick);
+        botP = new BotPillar(rand + gap, screenWidth + left, resources, smImageBrick);
     }
 
     public void draw(Canvas canvas, Paint paint){

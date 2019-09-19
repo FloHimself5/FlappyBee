@@ -8,7 +8,7 @@
     android:padding="10dp"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="86dp"
-    android:background="@drawable/background">
+    android:background="@drawable/background_new">
 
     <!--
     <Button
@@ -149,7 +149,7 @@
             android:layout_marginRight="70dp"
             android:layout_marginBottom="300dp"
             android:background="@null"
-            android:src="@drawable/button_menu"
+            android:src="@drawable/button_menu_new"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_To_Game"
             app:layout_constraintStart_toStartOf="parent"
@@ -167,7 +167,7 @@
             android:layout_marginRight="95dp"
             android:layout_marginBottom="300dp"
             android:background="@null"
-            android:src="@drawable/button_play"
+            android:src="@drawable/button_play_new"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_To_Main"

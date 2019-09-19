@@ -40,14 +40,24 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private Bitmap bgImage;
     private Bitmap smImage;
 
+    private Bitmap bgImageBrick;
+    private Bitmap smImageBrick;
+
+    private int widthWalls = 250;
+
+
+
     public GameView(Context context, MainActivity mainActivity) {
         super(context);
         myContext = context;
         this.mainActivity = mainActivity;
         getHolder().addCallback(this);
         setFocusable(true);
-        bgImage = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+        bgImage = BitmapFactory.decodeResource(getResources(), R.drawable.background_new);
         smImage = Bitmap.createScaledBitmap(bgImage,screenWidth,screenHeight,true);
+
+        bgImageBrick = BitmapFactory.decodeResource(getResources(), R.drawable.bricks_new);
+        smImageBrick = Bitmap.createScaledBitmap(bgImageBrick,widthWalls,screenHeight,true);
     }
 
     @Override
@@ -88,16 +98,16 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
             if(wall1.check()){
                 if((screenWidth - wall2.getRight())> distance) {
-                    wall1 = new Wall(getResources());
+                    wall1 = new Wall(getResources(), smImageBrick);
                 }else {
-                    wall1 = new Wall(getResources(),distance - (Math.abs(screenWidth - wall2.getRight())));
+                    wall1 = new Wall(getResources(),distance - (Math.abs(screenWidth - wall2.getRight())), smImageBrick);
                 }
             }
             if(wall2.check()){
                 if((screenWidth - wall1.getRight())> distance) {
-                    wall2 = new Wall(getResources());
+                    wall2 = new Wall(getResources(), smImageBrick);
                 }else {
-                    wall2 = new Wall(getResources(),distance - (Math.abs(screenWidth - wall1.getRight())));
+                    wall2 = new Wall(getResources(),distance - (Math.abs(screenWidth - wall1.getRight())), smImageBrick);
                 }
             }
 
@@ -110,11 +120,12 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
             characterSprite.addScore(wall2.getPoint(characterSprite));
 
 
-            if(characterSprite.getScore() != 0 && characterSprite.getScore() % 10 == 0){
+            if(characterSprite.getScore() != 0 && characterSprite.getScore() % 10 == 0) {
                 speedup = characterSprite.getScore() / 10;
+            }
                 wall1.speedup(speedup);
                 wall2.speedup(speedup);
-            }
+
 
             characterSprite.update();
             characterSprite.draw(canvas);
@@ -169,9 +180,9 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void allNew(){
         wentToScore = false;
-        characterSprite = new CharacterSprite(BitmapFactory.decodeResource(getResources(), R.drawable.bee_final));
-        wall1 = new Wall(getResources());
-        wall2 = new Wall(getResources(),screenWidth/2);
+        characterSprite = new CharacterSprite(BitmapFactory.decodeResource(getResources(), R.drawable.bee_final_new));
+        wall1 = new Wall(getResources(), smImageBrick);
+        wall2 = new Wall(getResources(),screenWidth/2, smImageBrick);
 
     }
 

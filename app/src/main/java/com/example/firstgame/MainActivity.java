@@ -42,7 +42,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         gameWidgetRel = new RelativeLayout(this);
 
         pauseButton = new ImageButton(this);
-        pauseButton.setImageResource(R.drawable.button_pause);
+        pauseButton.setImageResource(R.drawable.button_pause_new);
         pauseButton.setBackground(null);
         //TextView myText = new TextView(this);
 

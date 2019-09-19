@@ -19,32 +19,29 @@ public class TopPillar {
 
     private int speedup = 1;
 
-    private Bitmap bgImage;
-    private Bitmap smImage;
+    private Bitmap smImageBrick;
     private  Resources resources;
 
     private int width = 250;
 
-    public TopPillar(int bot, int left, Resources resources){
+    public TopPillar(int bot, int left, Resources resources, Bitmap smImageBrick){
         this.left = left;
         right = left + width;
         this.bot = bot;
         top = bot -screenHeight;
 
         this.resources = resources;
-        bgImage = BitmapFactory.decodeResource(resources, R.drawable.wall_final);
-        smImage = Bitmap.createScaledBitmap(bgImage,width,screenHeight,true);
+        this.smImageBrick = smImageBrick;
     }
 
-    public TopPillar(int bot, Resources resources){
+    public TopPillar(int bot, Resources resources, Bitmap smImageBrick){
         left = screenWidth;
         right = left + width;
         this.bot = bot;
         top = bot -screenHeight;
 
         this.resources = resources;
-        bgImage = BitmapFactory.decodeResource(resources, R.drawable.wall_final);
-        smImage = Bitmap.createScaledBitmap(bgImage,width,screenHeight,true);
+        this.smImageBrick = smImageBrick;
     }
 
     public boolean passed(CharacterSprite bird) {
@@ -59,7 +56,7 @@ public class TopPillar {
     }
 
     public void draw(Canvas canvas, Paint paint) {
-        canvas.drawBitmap(smImage,left, (int)top, paint);
+        canvas.drawBitmap(smImageBrick,left, (int)top, paint);
        // paint.setColor(Color.rgb(0,255,0));
        // paint.setStrokeWidth(10);
         //canvas.drawRect(left, top, right, bot,paint);
