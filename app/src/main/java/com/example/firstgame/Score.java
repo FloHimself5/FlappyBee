@@ -8,12 +8,14 @@ import android.widget.Button;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Score extends Activity implements View.OnClickListener{
 
-    Button buttonAdd, buttonShow, buttonDelete, buttonMain, buttonGame;
+    Button buttonAdd, buttonShow, buttonDelete;
+    ImageButton  buttonMain, buttonGame;
     myDbAdapter helper;
 
     int score;
@@ -27,9 +29,9 @@ public class Score extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_score);
         helper = new myDbAdapter(this);
 
-        buttonMain = (Button) findViewById(R.id.button_To_Main);
+        buttonMain = findViewById(R.id.button_To_Main);
         buttonMain.setOnClickListener(this);
-        buttonGame = (Button) findViewById(R.id.button_To_Game);
+        buttonGame = findViewById(R.id.button_To_Game);
         buttonGame.setOnClickListener(this);
 /*
         buttonAdd = (Button) findViewById(R.id.button_add);
@@ -69,7 +71,7 @@ public class Score extends Activity implements View.OnClickListener{
         String stringDatum = formatDay.format(datum);
         String stringHour = formatHour.format(time);
         String stringMinute = formatMinute.format(time);
-        String name = "Bob";
+        String name = " ";
         String date = stringHour + ":" + stringMinute + " - " + stringDatum;
         String scoreSring = Integer.toString(score);
         long id = helper.insertData(name,date,scoreSring);

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -36,14 +37,17 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private boolean wentToScore = false;
     private MainActivity mainActivity;
 
+    private Bitmap bgImage;
+    private Bitmap smImage;
+
     public GameView(Context context, MainActivity mainActivity) {
         super(context);
         myContext = context;
         this.mainActivity = mainActivity;
         getHolder().addCallback(this);
-
         setFocusable(true);
-
+        bgImage = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+        smImage = Bitmap.createScaledBitmap(bgImage,screenWidth,screenHeight,true);
     }
 
     @Override
@@ -78,21 +82,22 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         if (canvas != null) {
-            canvas.drawColor(Color.WHITE);
+            canvas.drawBitmap(smImage,0, 0, null);
+           // canvas.drawColor(Color.WHITE);
             Paint paint = new Paint();
 
             if(wall1.check()){
                 if((screenWidth - wall2.getRight())> distance) {
-                    wall1 = new Wall();
+                    wall1 = new Wall(getResources());
                 }else {
-                    wall1 = new Wall(distance - (Math.abs(screenWidth - wall2.getRight())));
+                    wall1 = new Wall(getResources(),distance - (Math.abs(screenWidth - wall2.getRight())));
                 }
             }
             if(wall2.check()){
                 if((screenWidth - wall1.getRight())> distance) {
-                    wall2 = new Wall();
+                    wall2 = new Wall(getResources());
                 }else {
-                    wall2 = new Wall(distance - (Math.abs(screenWidth - wall1.getRight())));
+                    wall2 = new Wall(getResources(),distance - (Math.abs(screenWidth - wall1.getRight())));
                 }
             }
 
@@ -164,9 +169,9 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void allNew(){
         wentToScore = false;
-        characterSprite = new CharacterSprite(BitmapFactory.decodeResource(getResources(), R.drawable.bee));
-        wall1 = new Wall();
-        wall2 = new Wall(screenWidth/2);
+        characterSprite = new CharacterSprite(BitmapFactory.decodeResource(getResources(), R.drawable.bee_final));
+        wall1 = new Wall(getResources());
+        wall2 = new Wall(getResources(),screenWidth/2);
 
     }
 

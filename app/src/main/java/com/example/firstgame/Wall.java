@@ -16,20 +16,22 @@ public class Wall {
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
-    public Wall(){
+    private Resources resources;
 
+    public Wall(Resources resources){
+        this.resources = resources;
         gap = (int)((Math.random() * 800) + 500);
         int rand = (int)((Math.random() * screenHeight/3) + screenHeight/6 );
-        topP = new TopPillar(rand);
-        botP = new BotPillar(rand + gap);
+        topP = new TopPillar(rand, resources);
+        botP = new BotPillar(rand + gap, resources);
     }
 
-    public Wall(int left){
-
+    public Wall(Resources resources, int left){
+        this.resources = resources;
         gap = (int)((Math.random() * 600) + 300);
         int rand = (int)((Math.random() * screenHeight/3) + screenHeight/6 );
-        topP = new TopPillar(rand, screenWidth + left);
-        botP = new BotPillar(rand + gap, screenWidth + left);
+        topP = new TopPillar(rand, screenWidth + left, resources);
+        botP = new BotPillar(rand + gap, screenWidth + left, resources);
     }
 
     public void draw(Canvas canvas, Paint paint){

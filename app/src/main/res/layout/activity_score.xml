@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="10dp"
     tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="86dp">
+    tools:layout_editor_absoluteY="86dp"
+    android:background="@drawable/background">
 
     <!--
     <Button
@@ -101,6 +103,7 @@
                         android:layout_weight="1"
                         android:width="0dp"
                         android:text="NAME "
+                        android:textStyle="bold"
                         android:textSize="16dp" />
 
                     <TextView
@@ -110,6 +113,7 @@
                         android:layout_weight="1"
                         android:width="0dp"
                         android:text="SCORE "
+                        android:textStyle="bold"
                         android:textSize="16dp" />
 
                     <TextView
@@ -119,6 +123,7 @@
                         android:layout_weight="2"
                         android:width="0dp"
                         android:text="DATE "
+                        android:textStyle="bold"
                         android:textSize="16dp" />
 
                 </LinearLayout>
@@ -127,17 +132,50 @@
 
         </LinearLayout>
 
-    <Button
-        android:id="@+id/button_To_Main"
-        android:layout_width="198dp"
-        android:layout_height="wrap_content"
-        android:text="To Main" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button_To_Game"
-        android:layout_width="199dp"
-        android:layout_height="wrap_content"
-        android:text="To Game" />
+
+        <ImageButton
+            android:id="@+id/button_To_Main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="95dp"
+            android:layout_marginLeft="95dp"
+            android:layout_marginTop="370dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginBottom="300dp"
+            android:background="@null"
+            android:src="@drawable/button_menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_To_Game"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageButton
+            android:id="@+id/button_To_Game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="370dp"
+            android:layout_marginEnd="95dp"
+            android:layout_marginRight="95dp"
+            android:layout_marginBottom="300dp"
+            android:background="@null"
+            android:src="@drawable/button_play"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_To_Main"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
 

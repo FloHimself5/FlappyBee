@@ -1,6 +1,8 @@
 package com.example.firstgame;
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,27 +16,36 @@ public class BotPillar {
 
     private boolean paused = false;
 
-    private int width = 200;
+    private int width = 250;
     private int speedup = 1;
 
-    public BotPillar(int top, int left){
+    private Bitmap bgImage;
+    private Bitmap smImage;
+    private  Resources resources;
+
+    public BotPillar(int top, int left, Resources resources){
       this.left = left;
       this.top = top;
       right = left + width;
       bot = screenHeight;
+
+      this.resources = resources;
+      bgImage = BitmapFactory.decodeResource(resources, R.drawable.wall_final);
+      smImage = Bitmap.createScaledBitmap(bgImage,width,screenHeight,true);
     }
 
-    public BotPillar(int top){
+    public BotPillar(int top, Resources resources){
         left = screenWidth;
         this.top = top;
         right = left + width;
         bot = screenHeight;
+        this.resources = resources;
+        bgImage = BitmapFactory.decodeResource(resources, R.drawable.wall_final);
+        smImage = Bitmap.createScaledBitmap(bgImage,width,screenHeight,true);
     }
 
     public void draw(Canvas canvas, Paint paint) {
-        paint.setColor(Color.rgb(0,255,0));
-        paint.setStrokeWidth(10);
-        canvas.drawRect(left, top, right, bot,paint);
+        canvas.drawBitmap(smImage,left, (int)top, paint);
     }
 
     public void update() {

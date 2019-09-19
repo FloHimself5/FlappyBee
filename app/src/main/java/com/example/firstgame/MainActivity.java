@@ -2,6 +2,7 @@ package com.example.firstgame;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -9,9 +10,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -19,10 +23,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private GameView gameView;
     private LinearLayout gameWidgets;
     private boolean paused = false;
-    private Button pauseButton;
+    private ImageButton pauseButton;
     private RelativeLayout gameWidgetRel;
 
 
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,15 +41,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
         gameWidgets = new LinearLayout (this);
         gameWidgetRel = new RelativeLayout(this);
 
-        pauseButton = new Button(this);
+        pauseButton = new ImageButton(this);
+        pauseButton.setImageResource(R.drawable.button_pause);
+        pauseButton.setBackground(null);
         //TextView myText = new TextView(this);
 
-        pauseButton.setWidth(300);
-        pauseButton.setText("Pause");
+       // pauseButton.setWidth(300);
+       // pauseButton.setText("Pause");
 
         //myText.setText("rIZ..i");
 
-        //gameWidgets.addView(myText);
+
         gameWidgets.addView(pauseButton);
        // gameWidgetRel.addView(pauseButton);
        // gameWidgetRel.setHorizontalGravity(250);
@@ -54,6 +62,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         gameWidgetRel.addView(gameView);
         gameWidgetRel.addView(gameWidgets);
+
         gameWidgetRel.setHorizontalGravity(Gravity.RIGHT);
 
         //setContentView(game);
@@ -73,11 +82,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if(!paused) {
             gameView.pause();
             paused = true;
-            pauseButton.setText("Continue");
+            //pauseButton.setText("Continue");
         }else {
             gameView.unpause();
             paused = false;
-            pauseButton.setText("Pause");
+           // pauseButton.setText("Pause");
         }
     }
 }

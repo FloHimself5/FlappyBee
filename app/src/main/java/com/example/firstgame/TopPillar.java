@@ -1,6 +1,8 @@
 package com.example.firstgame;
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -17,19 +19,32 @@ public class TopPillar {
 
     private int speedup = 1;
 
-    private int width = 200;
-    public TopPillar(int bot, int left){
+    private Bitmap bgImage;
+    private Bitmap smImage;
+    private  Resources resources;
+
+    private int width = 250;
+
+    public TopPillar(int bot, int left, Resources resources){
         this.left = left;
         right = left + width;
         this.bot = bot;
-        top = 0;
+        top = bot -screenHeight;
+
+        this.resources = resources;
+        bgImage = BitmapFactory.decodeResource(resources, R.drawable.wall_final);
+        smImage = Bitmap.createScaledBitmap(bgImage,width,screenHeight,true);
     }
 
-    public TopPillar(int bot){
+    public TopPillar(int bot, Resources resources){
         left = screenWidth;
         right = left + width;
         this.bot = bot;
-        top = 0;
+        top = bot -screenHeight;
+
+        this.resources = resources;
+        bgImage = BitmapFactory.decodeResource(resources, R.drawable.wall_final);
+        smImage = Bitmap.createScaledBitmap(bgImage,width,screenHeight,true);
     }
 
     public boolean passed(CharacterSprite bird) {
@@ -44,9 +59,10 @@ public class TopPillar {
     }
 
     public void draw(Canvas canvas, Paint paint) {
-        paint.setColor(Color.rgb(0,255,0));
-        paint.setStrokeWidth(10);
-        canvas.drawRect(left, top, right, bot,paint);
+        canvas.drawBitmap(smImage,left, (int)top, paint);
+       // paint.setColor(Color.rgb(0,255,0));
+       // paint.setStrokeWidth(10);
+        //canvas.drawRect(left, top, right, bot,paint);
     }
 
     public void update() {
