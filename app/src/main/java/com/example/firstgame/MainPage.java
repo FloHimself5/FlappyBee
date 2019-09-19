@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -63,15 +64,18 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-
+        MediaPlayer mp = MediaPlayer.create(this, R.raw.clack);
         switch (v.getId()) {
 
             case R.id.button_game:
+
+                mp.start();
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
 
             case R.id.button_score:
+                mp.start();
                 startActivity(new Intent(this, Score.class));
                 break;
             default:

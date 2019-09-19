@@ -1,6 +1,7 @@
 package com.example.firstgame;
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -106,29 +107,18 @@ public class Score extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        MediaPlayer mp = MediaPlayer.create(this, R.raw.clack);
+
         switch (v.getId()) {
 
             case R.id.button_To_Main:
                 startActivity(new Intent(this, MainPage.class));
-                // Message.message(getApplicationContext(),"Enter Both Name and Password");
+                mp.start();
                 break;
             case R.id.button_To_Game:
                 startActivity(new Intent(this, MainActivity.class));
-                // Message.message(getApplicationContext(),"Enter Both Name and Password");
+                mp.start();
                 break;
-
-/*
-            case R.id.button_add:
-                addEntry(helper.getHighscore()+1);
-               // Message.message(getApplicationContext(),"Enter Both Name and Password");
-                break;
-            case R.id.button_show:
-                viewdata();
-                break;
-            case R.id.button_delete:
-               delete();
-                break;
-*/
             default:
                 break;
         }

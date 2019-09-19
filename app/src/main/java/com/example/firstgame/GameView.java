@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -45,7 +46,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private int widthWalls = 250;
 
-
+    private MediaPlayer mp;
 
     public GameView(Context context, MainActivity mainActivity) {
         super(context);
@@ -58,6 +59,8 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         bgImageBrick = BitmapFactory.decodeResource(getResources(), R.drawable.bricks_new);
         smImageBrick = Bitmap.createScaledBitmap(bgImageBrick,widthWalls,screenHeight,true);
+        mp = MediaPlayer.create(getContext(), R.raw.music_background);
+
     }
 
     @Override
@@ -71,14 +74,22 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         thread = new GameThread(getHolder(), this);
         thread.setRunning(true);
         thread.start();
+        if(!mp.isPlaying()){
+            mp.start();
+            mp.setLooping(true);
+        }
 
     }
+
+
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         boolean retry = true;
+
         while (retry) {
             try {
+                mp.stop();
                 thread.setRunning(false);
                 thread.join();
             } catch (InterruptedException e) {
@@ -88,12 +99,22 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
+
+
+
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
+
+
+        if(!mp.isPlaying()){
+            mp.start();
+            mp.setLooping(true);
+        }
+
         if (canvas != null) {
             canvas.drawBitmap(smImage,0, 0, null);
-           // canvas.drawColor(Color.WHITE);
             Paint paint = new Paint();
 
             if(wall1.check()){
