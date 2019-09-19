@@ -9,7 +9,7 @@
 
 
     <ImageButton
-        android:id="@+id/button_game"
+        android:id="@+id/button_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="95dp"
@@ -19,15 +19,15 @@
         android:layout_marginRight="70dp"
         android:layout_marginBottom="300dp"
         android:background="@null"
-        android:src="@drawable/button_play_new"
+        android:src="@drawable/button_score_new"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_score"
+        app:layout_constraintEnd_toStartOf="@+id/button_game"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
-        android:id="@+id/button_score"
+        android:id="@+id/button_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
@@ -37,10 +37,10 @@
         android:layout_marginRight="95dp"
         android:layout_marginBottom="300dp"
         android:background="@null"
-        android:src="@drawable/button_score_new"
+        android:src="@drawable/button_play_new"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_game"
+        app:layout_constraintStart_toEndOf="@+id/button_score"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
